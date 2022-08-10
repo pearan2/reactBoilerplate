@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./0_presentation/components/layouts/Layout";
+import Home from "./0_presentation/pages/Home";
 
-function App() {
+const NotFound = React.lazy(
+  () => import("./0_presentation/pages/core/NotFound")
+);
+const About = React.lazy(() => import("./0_presentation/pages/About"));
+const Setting = React.lazy(() => import("./0_presentation/pages/Setting"));
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Suspense fallback={<div>Loading Page...</div>}>
+        <Routes>
+          <Route path="*" element={<NotFound></NotFound>}></Route>
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/about" element={<About></About>}></Route>
+          <Route path="/setting" element={<Setting></Setting>}></Route>
+        </Routes>
+      </Suspense>
+    </Layout>
   );
-}
+};
 
 export default App;
