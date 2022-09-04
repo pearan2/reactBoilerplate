@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Header from "./Header";
+import Header, { HeaderFallback } from "./Header";
 
 type LayoutProps = {
   children?: React.ReactNode;
@@ -8,7 +8,7 @@ type LayoutProps = {
 const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <>
-      <Suspense fallback={<div>LoadingHeader...</div>}>
+      <Suspense fallback={<HeaderFallback></HeaderFallback>}>
         <Header></Header>
       </Suspense>
       <main>{props.children}</main>

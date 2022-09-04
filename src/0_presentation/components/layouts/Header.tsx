@@ -39,4 +39,12 @@ const OliNavLink: React.FC<OliNavLinkProps> = (props) => {
   );
 };
 
+export const HeaderFallback: React.FC = () => {
+  return (
+    <header className={styles.header}>
+      <div className={styles.logo}>Oli Corp</div>
+    </header>
+  );
+};
+
 export default Header;
