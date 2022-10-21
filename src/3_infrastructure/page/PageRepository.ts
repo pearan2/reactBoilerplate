@@ -5,10 +5,10 @@ class PageRepository implements IPageRepository {
   async getMyPage(role: string): Promise<Page[]> {
     await new Promise((r) => setTimeout(r, 500));
 
-    const p = Math.random();
-    if (p < 0.3) {
-      throw new Error("Can not load page list");
-    }
+    // const p = Math.random();
+    // if (p < 0.3) {
+    //   throw new Error("Can not load page list");
+    // }
 
     if (role === "user") {
       return [
