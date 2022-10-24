@@ -1,8 +1,5 @@
-import Get from "../../lib/di/get";
-import PageRepository from "../page/PageRepository";
+// import Get from "../../lib/di/get";
 
-const dependencyInject = () => {
-  Get.put("IPageRepository", new PageRepository());
-};
+const dependencyInject = () => {};
 
 export default dependencyInject;
