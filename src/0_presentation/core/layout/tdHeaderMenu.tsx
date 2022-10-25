@@ -1,4 +1,5 @@
 import { Menu } from "antd";
+import useFilm from "../../../1_application/domain/film/useFilm";
 import withAsync from "../../../lib/asyncBounrdary/withAsync";
 
 export interface TDMenuItem {
@@ -11,6 +12,8 @@ export interface TDMenuItem {
 }
 
 const TDHeaderMenu: React.FC = () => {
+  const { film } = useFilm();
+
   const menuItemClickHandler = (t: any) => {
     console.log(t);
   };
@@ -45,19 +48,20 @@ const TDHeaderMenu: React.FC = () => {
     ];
   };
 
-  return withAsync({
-    child: (
-      <Menu
-        triggerSubMenuAction="click"
-        style={{ width: "100%" }}
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={["2"]}
-        items={makeMenuItem()}
-        onClick={menuItemClickHandler}
-      />
-    ),
-  });
+  return (
+    <Menu
+      triggerSubMenuAction="click"
+      style={{ width: "100%" }}
+      theme="dark"
+      mode="horizontal"
+      defaultSelectedKeys={["2"]}
+      items={makeMenuItem()}
+      onClick={menuItemClickHandler}
+    />
+  );
 };
 
-export default TDHeaderMenu;
+export default withAsync({
+  child: TDHeaderMenu,
+  suspenseFallback: <p>asdf...</p>,
+});
