@@ -5,7 +5,7 @@ class Get {
     this._repos.set(name, obj);
   }
 
-  static get<T>(name: string): T {
+  static find<T>(name: string): T {
     if (this._repos.has(name)) {
       return this._repos.get(name);
     } else {

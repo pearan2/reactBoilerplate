@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import ErrorBoundary from "./lib/errorBoundary/ErrorBoundary";
-import "antd/dist/antd.min.css";
-import TDLayout from "./0_presentation/core/layout/td_layout";
+import ErrorBoundary from "./lib/asyncBounrdary/errorBoundary";
+import "antd/dist/antd.less";
+import TDLayout from "./0_presentation/core/layout/tdLayout";
 
 const App: React.FC = () => {
   return (

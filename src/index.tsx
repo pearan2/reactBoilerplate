@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
-import dependencyInject from "./3_infrastructure/core/DependencyInject";
+import dependencyInject from "./3_infrastructure/core/dependencyInject";
 import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(

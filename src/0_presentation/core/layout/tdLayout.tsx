@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Layout } from "antd";
-import TDHeaderMenu, { TDMenuItem } from "./td_header_menu";
-import { MailOutlined } from "@ant-design/icons";
+import TDHeaderMenu from "./tdHeaderMenu";
 const { Header, Content, Footer } = Layout;
 
 interface LayoutProps {
@@ -14,36 +13,6 @@ const makeListItem = () => {
   });
 };
 
-const makeMenuItem = (): TDMenuItem[] => {
-  return [
-    {
-      key: "1",
-      label: "EP.1",
-      icon: <MailOutlined></MailOutlined>,
-      popupOffset: [0, 0],
-      children: [
-        { key: "1-1", label: "EP.2" },
-        { key: "1-2", label: "EP.3" },
-        {
-          key: "1-3",
-          label: "EP.4",
-          popupOffset: [0, 0],
-          children: [
-            { key: "1-3-1", label: "EP.2" },
-            { key: "1-3-2", label: "EP.3" },
-            { key: "1-3-3", label: "EP.4" },
-          ],
-        },
-      ],
-    },
-    { key: "2", label: "EP.2" },
-    { key: "3", label: "EP.3" },
-    { key: "4", label: "EP.4" },
-    { key: "5", label: "EP.5" },
-    { key: "6", label: "EP.6" },
-    { key: "7", label: "EP.7" },
-  ];
-};
 const TDLayout: React.FC<LayoutProps> = (props) => {
   return (
     <Layout>
@@ -53,7 +22,7 @@ const TDLayout: React.FC<LayoutProps> = (props) => {
           height={48}
           alt="starwarsLogo"
         ></img>
-        <TDHeaderMenu items={makeMenuItem()}></TDHeaderMenu>
+        <TDHeaderMenu></TDHeaderMenu>
       </Header>
       <Content>
         <div className="site-layout-content">
