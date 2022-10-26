@@ -1,18 +1,18 @@
 import { ReactNode, Suspense } from "react";
 import ErrorBoundary from "./errorBoundary";
 
-interface WithAsyncPropsType<T> {
-  child: React.FC<T>;
+interface WithAsyncPropsType<P> {
+  child: React.FC<P>;
   suspenseFallback?: ReactNode;
   errorFallback?: ReactNode;
 }
 
-const withAsync = <P,>(props: WithAsyncPropsType<P> & P) => {
-  const Compo = (innerProps: P) => {
+const withAsync = <P,>(withAsyncProps: WithAsyncPropsType<P>) => {
+  const Compo: React.FC<P> = (props) => {
     return (
-      <ErrorBoundary fallback={props.errorFallback}>
-        <Suspense fallback={props.suspenseFallback}>
-          <props.child {...props}></props.child>;
+      <ErrorBoundary fallback={withAsyncProps.errorFallback}>
+        <Suspense fallback={withAsyncProps.suspenseFallback}>
+          <withAsyncProps.child {...props} as any></withAsyncProps.child>
         </Suspense>
       </ErrorBoundary>
     );
