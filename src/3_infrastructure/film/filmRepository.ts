@@ -15,7 +15,7 @@ const GET_ALL_FILMS = gql`
   }
 `;
 
-const GET_FILM_BY_ID = gql`
+export const GET_FILM_BY_ID = gql`
   query Root($filmId: ID) {
     film(id: $filmId) {
       openingCrawl
@@ -34,13 +34,24 @@ class FilmRepository implements IFilmRepository {
   };
 
   getFilmById = async (filmId: Id): Promise<Film> => {
-    console.log("getFilmById called", filmId);
-
     const apiClient = Get.find<ApolloClient<any>>("Connection");
     const ret = await apiClient.query({
       query: GET_FILM_BY_ID,
       variables: { filmId: filmId },
+      fetchPolicy: "no-cache",
     });
+
+    // const fakeUpdatedData = { ...ret.data };
+    // fakeUpdatedData["film"] = {
+    //   ...ret.data["film"],
+    //   openingCrawl: "캐시되었지롱 ㅋㅋ",
+    // };
+
+    // apiClient.writeQuery({
+    //   query: GET_FILM_BY_ID,
+    //   variables: { filmId: filmId },
+    //   data: fakeUpdatedData,
+    // });
     return ret.data["film"];
   };
 }

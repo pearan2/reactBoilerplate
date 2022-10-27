@@ -20,7 +20,6 @@ export const filmByIdSelector = selectorFamily({
       const filmRepo = Get.find<IFilmRepository>("IFilmRepository");
       return filmRepo.getFilmById(filmId);
     },
-  cachePolicy_UNSTABLE: { eviction: "most-recent" },
 });
 
 export default allFilmsSelector;
