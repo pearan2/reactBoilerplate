@@ -9,6 +9,10 @@ import Connection from "./connection";
 const dependencyInject = () => {
   ///
   Get.put<ApolloClient<any>>("Connection", Connection.getInstance());
+  Get.put<ApolloClient<any>>(
+    "AuthConnection",
+    Connection.getInstance("https://transcendence.dev:8080/graphql")
+  );
 
   ///
   Get.put<IFilmRepository>("IFilmRepository", new FilmRepository());

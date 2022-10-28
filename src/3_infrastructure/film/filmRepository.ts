@@ -15,7 +15,7 @@ const GET_ALL_FILMS = gql`
   }
 `;
 
-export const GET_FILM_BY_ID = gql`
+const GET_FILM_BY_ID = gql`
   query Root($filmId: ID) {
     film(id: $filmId) {
       openingCrawl
@@ -38,20 +38,8 @@ class FilmRepository implements IFilmRepository {
     const ret = await apiClient.query({
       query: GET_FILM_BY_ID,
       variables: { filmId: filmId },
-      // fetchPolicy: "no-cache",
+      fetchPolicy: "no-cache",
     });
-
-    // const fakeUpdatedData = { ...ret.data };
-    // fakeUpdatedData["film"] = {
-    //   ...ret.data["film"],
-    //   openingCrawl: "캐시되었지롱 ㅋㅋ",
-    // };
-
-    // apiClient.writeQuery({
-    //   query: GET_FILM_BY_ID,
-    //   variables: { filmId: filmId },
-    //   data: fakeUpdatedData,
-    // });
     return ret.data["film"];
   };
 }
