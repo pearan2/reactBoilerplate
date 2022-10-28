@@ -1,6 +1,7 @@
-import { ApolloClient, gql } from "@apollo/client";
-import IUserRepository from "../../2_domain/user/iUserRepository";
-import Get from "../../lib/di/get";
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import IUserRepository, {
+  SignUpParam,
+} from "../../2_domain/user/iUserRepository";
 
 const SIGN_UP = gql`
   mutation signup($input: SignupInput!) {
@@ -15,18 +16,16 @@ class UserRepository implements IUserRepository {
     return "";
   };
 
-  signUp = async (signUpParam: {
-    email: string;
-    password: string;
-    nickname: string;
-  }): Promise<boolean> => {
-    const authClient = Get.find<ApolloClient<any>>("AuthConnection");
+  signUp = async (signUpParam: SignUpParam): Promise<boolean> => {
+    const authClient = new ApolloClient({
+      uri: "https://transcendence.dev:8080/graphql",
+      cache: new InMemoryCache(),
+    });
     const ret = await authClient.mutate({
       mutation: SIGN_UP,
       variables: { input: signUpParam },
     });
-    console.log(ret);
-    return true;
+    return ret.data.signup.value as boolean;
   };
 }
 

@@ -1,5 +1,5 @@
-type SignUpParam = {
-  email: Email;
+export type SignUpParam = {
+  identifier: Email;
   password: Password;
   nickname: Nickname;
 };

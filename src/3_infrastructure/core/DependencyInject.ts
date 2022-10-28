@@ -1,21 +1,18 @@
-// import Get from "../../lib/di/get";
-
 import { ApolloClient } from "@apollo/client";
 import IFilmRepository from "../../2_domain/film/iFilmRepository";
+import IUserRepository from "../../2_domain/user/iUserRepository";
 import Get from "../../lib/di/get";
 import FilmRepository from "../film/filmRepository";
+import UserRepository from "../user/userRepository";
 import Connection from "./connection";
 
 const dependencyInject = () => {
   ///
   Get.put<ApolloClient<any>>("Connection", Connection.getInstance());
-  Get.put<ApolloClient<any>>(
-    "AuthConnection",
-    Connection.getInstance("https://transcendence.dev:8080/graphql")
-  );
 
   ///
   Get.put<IFilmRepository>("IFilmRepository", new FilmRepository());
+  Get.put<IUserRepository>("IUserRepository", new UserRepository());
 };
 
 export default dependencyInject;
