@@ -5,16 +5,8 @@ import Home from "../../home/home";
 const TDContent = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route
-        path="/film/:filmId"
-        element={
-          <div>
-            <FilmDetail></FilmDetail>
-            <FilmDetail></FilmDetail>
-          </div>
-        }
-      ></Route>
+      <Route path="/home" element={<Home></Home>}></Route>
+      <Route path="/film/:filmId" element={<FilmDetail></FilmDetail>}></Route>
       {/* <Route path="*" element={<NotFound></NotFound>}></Route>
       <Route path="/" element={<Home></Home>}></Route>
       <Route path="/about" element={<About></About>}></Route>

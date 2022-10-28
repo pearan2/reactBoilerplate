@@ -38,7 +38,7 @@ class FilmRepository implements IFilmRepository {
     const ret = await apiClient.query({
       query: GET_FILM_BY_ID,
       variables: { filmId: filmId },
-      fetchPolicy: "no-cache",
+      // fetchPolicy: "no-cache",
     });
 
     // const fakeUpdatedData = { ...ret.data };

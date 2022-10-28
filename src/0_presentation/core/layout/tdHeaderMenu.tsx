@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
-import useAllFilms from "../../../1_application/domain/film/useAllFilms";
+import useTDHeaderMenuController from "../../../1_application/core/layout/tdHeaderMenuController";
 import withAsync from "../../../lib/asyncBounrdary/withAsync";
 
 interface TDMenuItem {
@@ -13,7 +13,7 @@ interface TDMenuItem {
 }
 
 const TDHeaderMenu: React.FC = () => {
-  const { allFilms } = useAllFilms();
+  const { allFilms } = useTDHeaderMenuController();
 
   const makeMenuItem = (): TDMenuItem[] => {
     return allFilms.map((film) => {
